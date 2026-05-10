@@ -1,5 +1,8 @@
 # MakeMeDinner
 
+[![HF Space](https://img.shields.io/badge/HuggingFace-Live-blue)](https://huggingface.co/spaces/XMRTDAO/makemedinner)
+[![AMD Hackathon](https://img.shields.io/badge/AMD-Hackathon-red)](https://lablab.ai/event/amd-developer-hackathon)
+
 [![HF Space](https://img.shields.io/badge/HuggingFace-Space-blue)](https://huggingface.co/spaces/XMRTDAO/makemedinner)
 
 **Multimodal AI Cooking Assistant for the AMD Developer Hackathon**
