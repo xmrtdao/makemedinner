@@ -160,3 +160,5 @@ const u = new SpeechSynthesisUtterance("{text}"); u.rate=0.9; window.speechSynth
 
 st.markdown("---")
 st.caption("MakeMeDinner — AMD Developer Hackathon · Vision & Multimodal AI Track · OSS")
+
+# v2 rebuild trigger
