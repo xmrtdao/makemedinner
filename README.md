@@ -142,6 +142,9 @@ npm i -g vercel
 vercel --prod
 ```
 
+
+![Architecture Diagram](https://raw.githubusercontent.com/xmrtdao/makemedinner/main/architecture.svg)
+*Detailed system pipeline — view full resolution in browser*
 ### Supabase (Backend)
 ```bash
 supabase login
