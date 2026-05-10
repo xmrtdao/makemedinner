@@ -1,0 +1,26 @@
+{
+  "name": "makemedinner",
+  "version": "1.0.0",
+  "description": "Multimodal AI cooking assistant for AMD Developer Hackathon",
+  "scripts": {
+    "dev": "python3 -m http.server 8080 --directory demo",
+    "build": "echo 'Static deployment - no build step required'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "ai",
+    "vision",
+    "multimodal",
+    "cooking",
+    "recipes",
+    "amd",
+    "rocm",
+    "hackathon"
+  ],
+  "author": "XMRT DAO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xmrtdao/makemedinner.git"
+  }
+}

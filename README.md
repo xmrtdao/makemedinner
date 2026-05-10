@@ -2,6 +2,11 @@
 
 **Multimodal AI Cooking Assistant for the AMD Developer Hackathon**
 
+[![AMD Developer Hackathon](https://img.shields.io/badge/AMD-Hackathon%202026-ED1C24?logo=amd)](https://lablab.ai/ai-hackathons/amd-developer)
+[![Track](https://img.shields.io/badge/Track-Vision%20%26%20Multimodal%20AI-blue)]()
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Repo](https://img.shields.io/badge/GitHub-xmrtdao%2Fmakemedinner-black?logo=github)](https://github.com/xmrtdao/makemedinner)
+
 > "Point your camera at your fridge. We'll tell you what to cook."
 
 MakeMeDinner is a vision-first AI cooking assistant built for the AMD Developer Hackathon (Vision & Multimodal AI track). It combines on-device ingredient recognition, recipe generation, and voice-guided cooking instructions — all optimized for AMD ROCm GPU acceleration.
@@ -86,6 +91,9 @@ Open `http://localhost:8080` → Allow camera → Snap your ingredients.
 ```
 makemedinner/
 ├── README.md
+├── LICENSE
+├── package.json
+├── vercel.json
 ├── demo/
 │   └── index.html          # Interactive webcam demo
 ├── vision/
@@ -103,7 +111,9 @@ makemedinner/
 │   └── functions/
 │       ├── scan-ingredients/   # Vision inference endpoint
 │       ├── suggest-recipes/    # LLM recipe matching
-│       └── speak-instruction/  # TTS streaming endpoint
+│       ├── speak-instruction/  # TTS streaming endpoint
+│       ├── missing-recipes/    # Near-match recipe finder
+│       └── save-pantry/        # Persist pantry to DB
 └── deploy/
     └── huggingface-space/  # Gradio wrapper for HF demo
 ```
@@ -117,13 +127,42 @@ makemedinner/
 | `/scan-ingredients` | POST | Accepts base64 image, returns detected ingredients with confidence |
 | `/suggest-recipes` | POST | Takes ingredient list + dietary prefs, returns ranked recipes |
 | `/speak-instruction` | POST | Returns audio URL for a cooking step |
+| `/missing-recipes` | POST | Recipes needing only 1-2 more ingredients |
 | `/save-pantry` | POST | Persist user's pantry to DB |
+
+---
+
+## Deployment
+
+### Vercel (Demo UI)
+```bash
+npm i -g vercel
+vercel --prod
+```
+
+### Supabase (Backend)
+```bash
+supabase login
+supabase link --project-ref your-project-ref
+supabase functions deploy scan-ingredients
+supabase functions deploy suggest-recipes
+supabase functions deploy speak-instruction
+supabase functions deploy missing-recipes
+supabase functions deploy save-pantry
+supabase db push
+```
+
+### Hugging Face Space
+```bash
+cd deploy/huggingface-space
+# Follow https://huggingface.co/spaces/xmrtdao/makemedinner
+```
 
 ---
 
 ## Vision Model
 
-We fine-tuned a CLIP-style vision encoder on the [Recipe1M+](http://pic2recipe.csail.mit.edu/) ingredient subset using ROCm. The model classifies 200+ common cooking ingredients from a single photo.
+We fine-tuned a CLIP-style vision encoder on the Recipe1M+ ingredient subset using ROCm. The model classifies 200+ common cooking ingredients from a single photo.
 
 Training command:
 ```bash
